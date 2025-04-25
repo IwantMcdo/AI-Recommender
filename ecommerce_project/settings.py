@@ -25,7 +25,18 @@ SECRET_KEY = 'django-insecure-k4fuugn@_a4clol^p!sh74!2r8c#rc@_!od+ytyz)ohhsii^(q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # reads from .env
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['ai-recommender-irej.onrender.com', 'localhost', '127.0.0.1']
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_dev_secret")
+OPENAI_KEY = os.getenv("OPENAI_KEY")
+MONGO_URI = os.getenv("MONGO_URI")
 
 
 # Application definition
